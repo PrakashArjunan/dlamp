@@ -1,7 +1,8 @@
-﻿using System.Web;
+﻿using System.Reflection.Metadata;
+using System.Web;
 using System.Web.Optimization;
 
-namespace dlamp_PWA
+namespace dlamp
 {
     public class BundleConfig
     {
@@ -25,6 +26,24 @@ namespace dlamp_PWA
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // Adding Angular JS and main JS files
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Scripts/main.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ui.bootstrap").Include(
+                      "~/Scripts/ui-bootstrap-tpls-2.5.0.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/swhandler").Include(
+                "~/Scripts/swhandler.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Push").Include(
+                "~/Scripts/Push.js"));
+
         }
     }
 }

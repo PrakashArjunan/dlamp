@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Books";
+}
+
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+    <input type="hidden" id="userName" value="@userName">
+    <input type="hidden" id="alias" value="@displayname">
+}
+
+<div class="row content">
+    <div class="col-sm-8 XXLDarkBold">@ViewBag.Title</div>
+</div>
+
+<div class="col-sm-4 noPadding">
+    <input class="fullWidth" ng-model="searchKeyword" type="search" placeholder="Search Books..." />
+</div>
+
+<div class="listDivider"></div>
+
+<div class="row content">
+
+    <div class="col-sm-2 ">
+        <select class="fullWidth" ng-model="bookType" ng-init="selectedBookType='All Types'">
+            <option ng-repeat="bookType in bookTypes" value={{bookType.value}}>{{bookType.bookType}}</option>
+        </select>
+    </div>
+    <div class="col-sm-2 noPaddingLeft">
+        <select class="fullWidth" ng-model="bookCategory" ng-init="selectedBookCategory='All Categories'">
+            <option ng-repeat="bookCategory in bookCategories" value={{bookCategory.value}}>{{bookCategory.bookCategory}}</option>
+        </select>
+    </div>
+    <div class="col-sm-2 noPaddingLeft">
+        <select class="fullWidth" ng-model="bookAuthor" ng-init="selectedBookAuthor='All Authors'">
+            <option ng-repeat="bookAuthor in bookAuthors" value={{bookAuthor.value}}>{{bookAuthor.bookAuthor}}</option>
+        </select>
+    </div>
+
+
+    <div class="listDivider"></div>
+
+    <ul>
+        <li class="col-xs-6 articleTile fadeIn" ng-repeat="book in ang_booksList | filter:searchKeyword | filter:bookType | filter:bookCategory | filter:bookAuthor">
+
+            <div class="col-sm-3 noPadding">
+                <img class="fullWidth CoverImg" src="{{book.BK_ImgURL}}" />
+            </div>
+
+            <div class="col-sm-9 paddingBoostLeft tileHeight">
+                <div class="listTitle">
+                    <a href={{book.BK_URL}} target="_blank">{{book.BK_Title}}</a>
+                </div>
+                <div class="listSub">
+                    <span class="SDark limitTo2Lines">{{book.BK_Desc}}</span>
+                </div>
+                <div class="listSub floorBottom">
+                    <div class="listSub">
+                        <span class="SLight ">{{book.BK_Author}}&nbsp&nbsp</span>
+                    </div>
+                    <div class="listSub">
+                        <span class="SLight ">Shared By:&nbsp&nbsp</span><span class="SDark">{{book.BK_SharedBy}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listDivider"></div>
+        </li>
+    </ul>
+</div>
+
+<div class="col">
+    <div class="XLDarkBold">Add a book</div>
+    <div class="MDark">To add a book, please paste the URL below</div>
+
+    <div class="listDivider"></div>
+
+    <div>
+        <input class="fullWidth" type="url" name="url" id="url" ng-change="initParsing('','','books')" ng-model="inputURL" title="Paste URL to add a book..." placeholder="Paste URL to add a book..." pattern="(https://.*)|(http://.*)|(.*\.muz\.*)" size="30" required>
+    </div>
+
+    <div class="listDivider"></div>
+
+    <div ng-show="isLoading">
+        loading...
+    </div>
+    <div ng-show="inputURL && !isLoading">
+        <div id="bookTitle">
+            <input class="LDarkBold fullWidth" type="text" ng-model="BK_Title" value={{BK_Title}} placeholder="Book Title" />
+        </div>
+        <div class="listDivider"></div>
+        <div id="bookDescription">
+            <input class="fullWidth" type="text" ng-model="BK_Desc" value="{{BK_Desc}}" placeholder="Book Description..." />
+        </div>
+        <div class="listDivider"></div>
+        <div id="bookAuthor">
+            <input class="fullWidth" type="text" ng-model="BK_Author" value={{BK_Author}} placeholder="Book Author" />
+        </div>
+        <div class="listDivider"></div>
+        <div id="bookSite">
+            <input class="fullWidth" type="text" ng-model="BK_Site" value={{BK_Site}} placeholder="Book from which site?" />
+        </div>
+        <div class="listDivider"></div>
+        <div>
+            <img src="{{BK_ImgURL}}" ng-model="bookImg" style="width:300px;" />
+            <img ng-show="!BK_ImgURL" src="~/images/BookCovers/defaultBookCoverImg.jpg" ng-model="bookImg" style="width:300px;" />
+        </div>
+        <div class="listDivider"></div>
+        <div id="bookType" class="col-sm-6 noPadding">
+            <select ng-model="BK_Type" ng-init="BK_Type='e-books'">
+                <option value="e-books">e-books</option>
+            </select>
+        </div>
+        <div id="bookCategory" class="col-sm-6 noPadding">
+            <select ng-model="BK_Category" ng-init="BK_Category='Others'">
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        <div class="listDivider"></div>
+
+        <div class="col-sm-12">
+            <div class="col-sm-2 noPadding">
+                <button id="postCourseBtn" ng-click="postToDB('books')">Post Book</button>
+            </div>
+            <div class="col-sm-2 noPadding">
+                <button onclick="document.getElementById('url').value = ''" ng-click="inputURL='' && initParsing('','','books')">Cancel</button>
+            </div>
+        </div>
+
+        <div class="listDivider"></div>
+
+    </div>
+
+</div>

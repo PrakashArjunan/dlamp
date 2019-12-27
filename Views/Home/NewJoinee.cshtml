@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Hello, wassup!";
+}
+
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+    <input type="text" id="userName" value="@userName">
+    <input type="text" id="alias" value="@displayname">
+}
+
+<div class="row">
+    <div class="col-sm-12 XXLDarkBold content">@ViewBag.Title</div>
+</div>
+
+<!--
+<div>
+    <div style='max-width: 1280px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="1280" height="720" src="https://msit.microsoftstream.com/embed/video/50035593-3a1b-4efa-b40a-cbc93cff6523?autoplay=true&amp;showinfo=false" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+</div>
+-->
+
+<div class="col content">
+    <div class="col-sm-6 noPaddingLeft tileHeight">
+        <div class="LDarkBold fullWidth">Know the team</div>
+        <div class="listSub">Eget nunc lobortis mattis aliquam faucibus purus in. Sed libero enim sed faucibus. </div>
+        <div class="floorBottom"><a href="http://aka.ms/studio91" class="blueLink" target="_blank">Visit Studio 91</a></div>
+    </div>
+
+    <div class="col-sm-6 noPaddingLeft tileHeight">
+        <div class="LDarkBold fullWidth">Microsoft Culture</div>
+        <div class="listSub">Eget nunc lobortis mattis aliquam faucibus purus in. Sed libero enim sed faucibus. </div>
+        <div class="floorBottom"><a href="https://microsoft.sharepoint.com/sites/Culture/" class="blueLink" target="_blank">Know Our Culture</a></div>
+    </div>
+
+    <div class="listDividerBig"></div>
+
+
+    <div class="col-sm-6 noPaddingLeft tileHeight">
+        <div class="LDarkBold fullWidth">Learn about design framework</div>
+        <div class="listSub">Eget nunc lobortis mattis aliquam faucibus purus in. Sed libero enim sed faucibus. </div>
+        <div class="floorBottom">
+            <div class="listSub">
+                <a href="http://bingstudios/" class="blueLink" target="_blank">Bing Studios | HIG</a>
+            </div>
+            <div class="listSub">
+                <a href="http://uni" class="blueLink" target="_blank">UNI Library</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-6 noPaddingLeft tileHeight">
+        <div class="LDarkBold fullWidth">Bing! Time Machine</div>
+        <div class="listSub">What we did earlier Eget nunc lobortis mattis aliquam faucibus purus in. Sed libero enim sed faucibus. </div>
+        <div class="floorBottom"><a href="smb://stcidesign" class="blueLink" target="_blank">Hop on!</a></div>
+    </div>
+
+    <div class="listDividerBig"></div>
+
+    <div class="col-sm-6 noPaddingLeft tileHeight">
+        <div class="LDarkBold fullWidth">Setup your mac</div>
+        <div class="listSub">Eget nunc lobortis mattis aliquam faucibus purus in. Sed libero enim sed faucibus. </div>
+        <div class="floorBottom"><a href="https://microsoft.sharepoint.com/sites/itweb/mdm" class="blueLink" target="_blank">Enroll Now</a></div>
+    </div>
+
+
+</div>
+
+
+

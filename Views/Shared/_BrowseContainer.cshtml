@@ -1,0 +1,24 @@
+﻿
+<div class="container sectionBG">
+
+    <div class="sectionHeader">
+        <span class="XLBold float-Left verticalAlignMiddle">
+            Courses
+        </span>
+        <span class="SRegularGrey marginLeft10 verticalAlignMiddle">
+            ({{ang_coursesList.length}})
+        </span>
+    </div>
+
+    <div class="sectionCarousel">
+        <div class="sectionCard" ng-repeat="course in ang_coursesList">
+            <a href={{course.CR_URL}} target="_blank">
+                <div><img class="mediumImg" src={{course.CR_ImgURL}} /></div>
+                <div class="sectionTitleStyle SBold"><span>{{course.CR_Title}}</span></div>
+                <div class="sectionTitleStyle SLight"><span>{{course.CR_Website}}</span></div>
+                <div class="sectionTitleStyle SLight"><span>{{course.CR_SharedBy}}</span></div>
+            </a>
+        </div>
+    </div>
+
+ </div>

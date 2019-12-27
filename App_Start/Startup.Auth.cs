@@ -9,7 +9,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 
-namespace dlamp_PWA
+namespace dlamp
 {
     public partial class Startup
     {

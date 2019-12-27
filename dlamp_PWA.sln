@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29411.108
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dlamp_PWA", "dlamp_PWA.csproj", "{9D0EBC55-6A89-45B6-A854-40FC7F7AED09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dlamp_PWA", "dlamp_PWA.csproj", "{51329898-9C20-4C29-9D29-91D770E66178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D0EBC55-6A89-45B6-A854-40FC7F7AED09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D0EBC55-6A89-45B6-A854-40FC7F7AED09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D0EBC55-6A89-45B6-A854-40FC7F7AED09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D0EBC55-6A89-45B6-A854-40FC7F7AED09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51329898-9C20-4C29-9D29-91D770E66178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51329898-9C20-4C29-9D29-91D770E66178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51329898-9C20-4C29-9D29-91D770E66178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51329898-9C20-4C29-9D29-91D770E66178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AE5D5171-E381-40C5-8474-0D8B743211E1}
+		SolutionGuid = {DA2F3293-2337-4F98-A38B-2EA524531FD2}
 	EndGlobalSection
 EndGlobal

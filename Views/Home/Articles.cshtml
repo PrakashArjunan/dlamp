@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Articles";
+}
+
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+    <input type="hidden" id="userName" value="@userName">
+    <input type="hidden" id="alias" value="@displayname">
+}
+
+<div class="row content">
+    <div class="col-sm-8 XXLDarkBold">@ViewBag.Title</div>
+</div>
+
+<div class="col-sm-4 noPadding">
+    <input class="fullWidth" ng-model="searchKeyword" type="search" placeholder="Search Articles..." />
+</div>
+
+<div class="listDivider"></div>
+
+<div class="row content">
+
+    <div class="col-sm-2 ">
+        <select class="fullWidth" ng-model="articleCategory" ng-init="selectedArticleCategory='All Categories'">
+            <option ng-repeat="articleCategory in articleCategories" value={{articleCategory.value}}>{{articleCategory.articleCategory}}</option>
+        </select>
+    </div>
+    <div class="col-sm-2 noPaddingLeft">
+        <select class="fullWidth" ng-model="articleSharedBy" ng-init="selectedArticleSharedBy='All Folks'">
+            <option ng-repeat="articleSharedBy in articleSharedBys" value={{articleSharedBy.value}}>{{articleSharedBy.articleSharedBy}}</option>
+        </select>
+    </div>
+
+
+    <div class="listDivider"></div>
+
+    <ul>
+        <li ng-class="$first? 'col-x-12 articleTile fadeIn' :'col-xs-4 articleTile fadeIn'" ng-repeat="article in ang_articlesList | filter:searchKeyword | filter:articleCategory | filter:articleSharedBy">
+            
+            <div ng-class="$first? 'col-sm-8 paddingRight' :'col-sm-12 noPaddingLeft '"  >
+                <img ng-class="$first? 'fullWidth CoverImgBig ' :'fullWidth CoverImg'" ng-if="article.AR_ImgURL" src="{{article.AR_ImgURL}}" />
+            </div>
+
+            <div ng-class="$first? 'col-sm-4 tileHeightBig' :'col-sm-12 tileHeight noPaddingLeft paddingTop'">
+                <div class="listTitle">
+                    <a href={{article.AR_URL}} target="_blank">{{article.AR_Title}}</a>
+                </div>
+                <div class="listSub">
+                    <span class="SDark limitTo2Lines">{{article.AR_Desc}}</span>
+                </div>
+                <div class="listSub floorBottom">
+                    <div class="listSub">
+                        <span class="SLight ">Shared By:&nbsp&nbsp</span><span class="SDark">{{article.AR_SharedBy}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-class="$first? 'listDividerBig' : 'listDivider'"></div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="col">
+    <div class="XLDarkBold">Add an article</div>
+    <div class="MDark">To add an article, please paste the URL below</div>
+
+    <div class="listDivider"></div>
+
+    <div>
+        <input class="fullWidth" type="url" name="url" id="url" ng-change="initParsing('','','articles')" ng-model="inputURL" title="Paste URL to add an article..." placeholder="Paste URL to add an article..." pattern="(https://.*)|(http://.*)|(.*\.muz\.*)" size="30" required>
+    </div>
+
+    <div class="listDivider"></div>
+
+    <div ng-show="isLoading">
+        loading...
+    </div>
+    <div ng-show="inputURL && !isLoading">
+        <div id="articleTitle">
+            <input class="LDarkBold fullWidth" type="text" ng-model="AR_Title" value={{AR_Title}} placeholder="Article Title" />
+        </div>
+        <div class="listDivider"></div>
+        <div id="articleDescription">
+            <input class="fullWidth" type="text" ng-model="AR_Desc" value="{{AR_Desc}}" placeholder="Article Description..." />
+        </div>
+        <div class="listDivider"></div>
+        <div>
+            <img src="{{AR_ImgURL}}" ng-model="articleImg" style="width:300px;" />
+            <img ng-show="!AR_ImgURL" src="~/images/BookCovers/defaultBookCoverImg.jpg" ng-model="bookImg" style="width:300px;" />
+        </div>
+        <div class="listDivider"></div>
+        <div id="articleCategory" class="col-sm-6 noPadding">
+            <select ng-model="AR_Category" ng-init="AR_Category='Others'">
+                <option value="Others">Others</option>
+            </select>
+        </div>
+
+        <div class="listDivider"></div>
+
+        <div class="col-sm-12">
+            <div class="col-sm-2 noPadding">
+                <button id="postArticleBtn" ng-click="postToDB('articles')">Post Artcile</button>
+            </div>
+            <div class="col-sm-2 noPadding">
+                <button onclick="document.getElementById('url').value = ''" ng-click="inputURL='' && initParsing('','','articles')">Cancel</button>
+            </div>
+        </div>
+
+        <div class="listDivider"></div>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,51 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div class="bottomMenuBase navbar-fixed-bottom" id="bottomMenuContainer">
+
+        <ul>
+            <li>
+                <a href="@Url.Action("Index","Home")" class="bottomMenuFont">
+                    <div class="float-Left">
+                        <img src="~/images/ico_Home.svg" ng-src="{{currTab == 0 && '/images/ico_Home_Selected.svg' || '/images/ico_Home.svg'}}" />
+                        <span>d.l.amp</span>
+                    </div>
+                </a>
+
+            </li>
+            <li>
+                <a href="@Url.Action("Dojo","Home")" class="bottomMenuFont">
+                    <div class="float-Left">
+                        <img src="~/images/ico_MyLearning.svg" ng-src="{{currTab == 1 && '/images/ico_MyLearning_Selected.svg' || '/images/ico_MyLearning.svg'}}" />
+                        <span>Learning</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Books","Home")" class="bottomMenuFont">
+                    <div class="float-Left">
+                        <img src="~/images/ico_Books.svg" ng-src="{{currTab == 2 && '/images/ico_Books_Selected.svg' || '/images/ico_Books.svg'}}" />
+                        <span>Good Reads</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("EventsConf","Home")" class="bottomMenuFont">
+                    <div class="float-Left">
+                        <img src="~/images/ico_Events.svg" ng-src="{{currTab == 3 && '/images/ico_Events_Selected.svg' || '/images/ico_Events.svg'}}" />
+                        <span>Events</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("","Home")" class="bottomMenuFont">
+                    <div class="float-Left">
+                        <img src="~/images/ico_Collections.svg" ng-src="{{currTab == 4 && '/images/ico_Collections_Selected.svg' || '/images/ico_Collections.svg'}}" />
+                        <span>Collections</span>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+}

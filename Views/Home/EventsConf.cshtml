@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Events & Conferences";
+}
+
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+    <input type="hidden" id="userName" value="@userName">
+    <input type="hidden" id="alias" value="@displayname">
+}
+
+<style>
+#carousel {
+  /* Ensure that the contents flow horizontally */
+  margin-top:200px;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+/* 2018 spec - For Safari 11, Chrome 69+ */
+#carousel.snap {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Needed to work on iOS Safari */
+}
+
+#carousel.snap > div {
+  scroll-snap-align: center;
+}
+
+</style>
+
+<div id="carousel" class="snap">
+    <div id="carousel-1">Item 1<br>Start scrolling ...</div>
+    <div id="carousel-2">Item 2</div>
+    <div id="carousel-3">Item 3</div>
+</div>

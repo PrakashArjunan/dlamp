@@ -1,0 +1,15 @@
+﻿<div style="width:375px; height:812px; background-color:#ccc; z-index:9999; position:absolute; top:0" ng-show="Search">
+    @if (Request.IsAuthenticated)
+    {
+        <div class="col-xs-12 headerBase navbar-fixed-top">
+            <div class="float-Left">
+                <input type="text" placeholder="search"/>
+            </div>
+
+            <div style="line-height:44px; text-align:right">
+                <img class="marginLeft16" src="~/images/ico_search.svg" height="24" ng-click="search('close')" />
+            </div>
+        </div>
+    }
+
+</div>

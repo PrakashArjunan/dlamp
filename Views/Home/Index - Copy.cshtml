@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+
+    <input type="hidden" id="userName" value="@userName">
+    <input type="hidden" id="alias" value="@displayname">
+}
+
+
+<!--heroCardsContainer-->
+<div id="heroCardContainer" class="container heroCardContainer">
+    <div class="row test">
+        <div id="heroCard" class="col-xs-4 heroCard" ng-repeat="notice in ang_noticeList" style="background-color:{{notice.bgColor}}">
+            <span id="tag" class="heroTagStyle">{{notice.tag}}</span>
+            <span id="title" class="heroTitleStyle MWhite">{{notice.title}}</span>
+            <span id="source" class="heroSourceStyle">{{notice.source}}</span>
+        </div>
+    </div>
+</div>
+
+<!--Courses-->
+<div id="sectionContainer" class=" container heroCardContainer sectionBG">
+
+    <div class="row">
+        <div class="sectionTitle MWhiteBold float-Left">
+            Courses
+        </div>
+        <div class="sectionTitle SLight">
+            ({{ang_coursesList.length}})
+        </div>
+    </div>
+
+    <div id="sectionTiles" class="row test">
+        <div class="col-xs-4 sectionTile" ng-repeat="course in ang_coursesList">
+            <a href={{course.CR_URL}} target="_blank">
+                <div><img class="mediumImg" src={{course.CR_ImgURL}} /></div>
+                <div class="sectionTitleStyle MWhite"><span>{{course.CR_Title}}</span></div>
+                <div class="sectionTitleStyle SLight"><span>{{course.CR_Website}}</span></div>
+                <div class="sectionTitleStyle SLight"><span>{{course.CR_SharedBy}}</span></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!--Books-->
+<div id="sectionContainer" class=" container heroCardContainer sectionBG">
+
+    <div class="row">
+        <div class="sectionTitle MWhiteBold float-Left">
+            Books
+        </div>
+        <div class="sectionTitle SLight">
+            ({{ang_booksList.length}})
+        </div>
+    </div>
+
+    <div id="sectionTiles" class="row test">
+
+            <div class="col-xs-4 sectionTile" ng-repeat="book in ang_booksList">
+                <a href={{book.BK_URL}} target="_blank">
+                    <img class="bookImg" src={{book.BK_ImgURL}} />
+                    <span class="sectionTitleStyle MWhite">{{book.BK_Title}}</span>
+                    <div class="sectionTitleStyle SLight"><span>{{book.BK_Author}}</span></div>
+                    <div class="sectionTitleStyle SLight"><span>{{book.BK_SharedBy}}</span></div>
+                </a>
+            </div>
+       
+    </div>
+
+</div>
+
+
+<!-- Modals -->
+<!-- SIMPLE MODAL WITHOUT DIRECTIVES-->
+
+<div class="modal" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="close" id="formCloseBtn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form ng-model="form">
+                    <div class="form-group" ng-if="id == 'addBook' || id == 'editBook'">
+                        <label>Book Title</label>
+                        <div>
+                            <input type="text" id="bookTitle" ng-model="form.bookTitle" name="Book Title" value="" placeholder="Book Title" ng-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="id == 'addBook' || id == 'editBook'">
+                        <label>Book Description</label>
+                        <div>
+                            <input type="text" id="bookDesc" ng-model="form.bookDesc" name="Book Desc" value="" placeholder="Book Description" ng-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="id == 'addBook' || id == 'editBook'">
+                        <label>Book Author</label>
+                        <div>
+                            <input type="text" id="bookAuthor" ng-model="form.bookAuthor" name="Book Authoer" value="" placeholder="Book Author" ng-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="id == 'addBook' || id == 'editBook'">
+                        <label>Book Shared By</label>
+                        <div>
+                            <input type="text" id="bookSharedBy" ng-model="form.bookSharedBy" name="Book Shared By" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="id == 'addBook' || id == 'editBook'">
+                        <input type="file" class="browse-btn" fileinput="book_CoverImg" file-model="form.bookCoverImg" id="bookCoverImg" filepreview="filepreview" />
+                        <div ng-if="filepreview" class="uploaded-img img-wrapper">
+                            <img ng-src="{{filepreview}}" id="filePreviewSrc" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-link" data-dismiss="modal">{{tertiaryBtn}}</button>
+                <button type="button" class="btn btn-secondary" ng-click="secondaryCallBack();" data-dismiss="modal" ng-if="secondaryBtn">{{secondaryBtn}}</button>
+                <button type="button" class="btn btn-primary" ng-click="primaryCallBack();">{{primaryBtn}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

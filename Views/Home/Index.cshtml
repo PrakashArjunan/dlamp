@@ -2,3 +2,91 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (Request.IsAuthenticated)
+{
+    string userName = User.Identity.Name;
+    string displayname = userName.Split('@')[0];
+
+    <input type="hidden" id="userName" value="@userName">
+    <input type="hidden" id="alias" value="@displayname">
+}
+
+<div class="noticeCarousel">
+    <div class="noticeCard" ng-repeat="notice in ang_noticeList" style="background-image:url('{{notice.bgImg}}')">
+        <div class="noticeTagStyle SRegularWhite">{{notice.tag}}</div>
+        <div class="noticeTitleStyle MBoldWhite">{{notice.title}}</div>
+        <div class="noticeSourceStyle SRegularWhite">{{notice.source}}</div>
+    </div> 
+</div>
+
+<div class="sectionBG">
+
+    <div class="sectionHeader">
+        <span class="XLBold float-Left verticalAlignMiddle">
+            Courses
+        </span>
+        <span class="SRegularGrey marginLeft10 verticalAlignMiddle">
+            ({{ang_coursesList.length}})
+        </span>
+    </div>
+
+    <div class="sectionCarousel">
+        <div class="sectionCard" ng-repeat="course in ang_coursesList">
+            <a href={{course.CR_URL}} target="_blank">
+                <div><img class="mediumImg" src={{course.CR_ImgURL}} /></div>
+                <div class="sectionTextStyle MRegular"><span>{{course.CR_Title}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{course.CR_Website}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{course.CR_SharedBy}}</span></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="sectionBG">
+
+    <div class="sectionHeader">
+        <span class="XLBold float-Left verticalAlignMiddle">
+            Books
+        </span>
+        <span class="SRegularGrey marginLeft10 verticalAlignMiddle">
+            ({{ang_booksList.length}})
+        </span>
+    </div>
+
+    <div class="sectionCarousel">
+        <div class="sectionCard" ng-repeat="book in ang_booksList">
+            <a href={{book.BK_URL}} target="_blank">
+                <div><img class="bookImg" src={{book.BK_ImgURL}} /></div>
+                <div class="sectionTextStyle MRegular"><span>{{book.BK_Title}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{book.BK_Author}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{book.BK_SharedBy}}</span></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="sectionBG">
+
+    <div class="sectionHeader">
+        <span class="XLBold float-Left verticalAlignMiddle">
+            Articles
+        </span>
+        <span class="SRegularGrey marginLeft10 verticalAlignMiddle">
+            ({{ang_articlesList.length}})
+        </span>
+    </div>
+
+    <div class="sectionCarousel">
+        <div class="sectionCard" ng-repeat="article in ang_articlesList">
+            <a href={{article.AR_URL}} target="_blank">
+                <div><img class="mediumImg" src={{article.AR_ImgURL}} /></div>
+                <div class="sectionTextStyle MRegular"><span>{{article.AR_Title}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{article.AR_Website}}</span></div>
+                <div class="sectionTextStyle SRegularGrey"><span>{{article.AR_SharedBy}}</span></div>
+            </a>
+        </div>
+    </div>
+
+</div>1

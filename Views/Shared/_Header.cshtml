@@ -1,0 +1,15 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div class="col-xs-12 headerBase navbar-fixed-top">
+            <div class="float-Left">
+                @Html.Partial("_LoginPartial")
+                <span class="XXLBold marginLeft8 verticalAlignMiddle">{{currTabName}}</span>
+            </div>
+
+            <div style="line-height:44px; text-align:right">
+                <img class="marginLeft16" src="~/images/ico_add.svg" height="24" />
+                <img class="marginLeft16" src="~/images/ico_search.svg" height="24" ng-click="search('all')" />
+            </div>
+    </div>
+}
+

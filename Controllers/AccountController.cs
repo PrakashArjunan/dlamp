@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.Owin.Security;
 
-namespace dlamp_PWA.Controllers
+namespace dlamp.Controllers
 {
     public class AccountController : Controller
     {
